@@ -1,4 +1,3 @@
-// 
 // Reduce Function
 
 function reduce(array, callback, initialValue = 0) {
@@ -16,11 +15,17 @@ function reduce(array, callback, initialValue = 0) {
 let add = (a, b) => a + b;
 console.log(reduce([4, 3, 5, 8, 6], add, 0));
 
+// ANSWER: 26
+
 let mult = (a, b) => a * b;
 console.log(reduce([4, 3, 5, 8, 6], mult, 1));
 
+// ANSWER: 2880
+
 let div = (a, b) => Math.ceil(a / b);
 console.log(reduce([4, 3, 5, 8, 6], div, 1));
+
+// ANSWER: 1
 
 // Challenge 2
 
@@ -49,6 +54,8 @@ function getAllKeys(obj) {
 
 console.log(getAllKeys(object));
 
+// ANSWER: ['name', 'age', 'hasPets']
+
 // Increase by two array function
 
 let increaseByTwo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -62,7 +69,12 @@ function increaseArray() {
   return newArray;
 }
 
-console.log(increaseArray());
+console.log('increaseByTwo (Original Array): ' + increaseByTwo);
+console.log('NewArray: ' + increaseArray());
+
+// ANSWER: 
+// increaseByTwo(Original Array): 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+// NewArray: 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 
 // Increase array with callback function
 
@@ -459,3 +471,198 @@ console.log('New Sorted Array: ' + array);
 // ANSWER:
 // Old Array: 1, 12, 21, 2
 // New Sorted Array: 21, 12, 2, 1
+
+// Factorilize a Number with RECURSION
+
+function factorialize(num) {
+  if (num < 0)
+    return -1;
+  else if (num == 0)
+    return 1;
+  else {
+    return (num * factorialize(num - 1));
+  }
+}
+console.log(factorialize(2)); //return 2
+console.log(factorialize(5)); //return 120
+console.log(factorialize(10)); //return 3628800
+console.log(factorialize(15)); //return 1307674368000
+console.log(factorialize(20)); //return 2432902008176640000
+console.log(factorialize(25)); //return 1.5511210043330986e+25
+console.log(factorialize(50)); //return 3.0414093201713376e+64
+
+// Factorilize a Number with WHILE Loop
+
+function factorialize(num) {
+  var result = num;
+  if (num === 0 || num === 1)
+    return 1;
+  while (num > 1) {
+    num--;
+    result *= num;
+  }
+  return result;
+}
+
+console.log(factorialize(2)); //return 2
+console.log(factorialize(5)); //return 120
+console.log(factorialize(10)); //return 3628800
+console.log(factorialize(15)); //return 1307674368000
+console.log(factorialize(20)); //return 2432902008176640000
+console.log(factorialize(25)); //return 1.5511210043330986e+25
+console.log(factorialize(50)); //return 3.0414093201713376e+64
+
+
+
+// Factorilize a Number with FOR Loop
+
+function factorialize(num) {
+  if (num === 0 || num === 1)
+    return 1;
+  for (var i = num - 1; i >= 1; i--) {
+    num *= i;
+  }
+  return num;
+}
+console.log(factorialize(2)); //return 2
+console.log(factorialize(5)); //return 120
+console.log(factorialize(10)); //return 3628800
+console.log(factorialize(15)); //return 1307674368000
+console.log(factorialize(20)); //return 2432902008176640000
+console.log(factorialize(25)); //return 1.5511210043330986e+25
+console.log(factorialize(50)); //return 3.0414093201713376e+64
+
+
+// Check for Palindromes
+
+function palindrome(str) {
+  //assign a front and a back pointer
+  let front = 0;
+  let back = str.length - 1;
+
+  //back and front pointers won't always meet in the middle, so use (back > front)
+  while (back > front) {
+    //increments front pointer if current character doesn't meet criteria
+    while (str[front].match(/[\W_]/)) {
+      front++;
+      continue;
+    }
+    //decrements back pointer if current character doesn't meet criteria
+    while (str[back].match(/[\W_]/)) {
+      back--;
+      continue;
+    }
+    //finally does the comparison on the current character
+    if (str[front].toLowerCase() !== str[back].toLowerCase()) return false
+    front++;
+    back--;
+  }
+
+  //if the whole string has been compared without returning false, it's a palindrome!
+  return true;
+
+}
+
+console.log(palindrome('sierra')); //return false
+console.log(palindrome('moom')); //return true
+console.log(palindrome('moom')); //return true
+console.log(palindrome('eye')); //return true
+console.log(palindrome('race car')); //return true
+console.log(palindrome('A man, a plan, a canal. Panama')); //return true
+
+
+// Find the Longest Word in a String
+
+function findLongestWord(str) {
+  var words = str.split(' ');
+  var maxLength = 0;
+  var longestWord = '';
+
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].length > maxLength) {;
+      maxLength = words[i].length;
+      longestWord = words[i];
+    }
+
+  }
+  console.log(maxLength); //returns 6
+  console.log(longestWord); //returns jumped
+  return maxLength;
+}
+findLongestWord("The quick brown fox jumped over the lazy dog");
+
+
+// Title Case a Sentence
+
+function titleCase(str) {
+  var convertToArray = str.toLowerCase().split(" ");
+  var result = convertToArray.map(function (val) {
+    return val.replace(val.charAt(0), val.charAt(0).toUpperCase());
+  });
+  console.log(result.join(' '));
+  return result.join(' ');
+}
+
+titleCase("I'm a little tea pot");
+// returns: I'm A Little Tea Pot
+
+// Return Largest Numbers in Arrays
+
+function largestOfFour(arr) {
+  var results = [];
+  for (var n = 0; n < arr.length; n++) {
+    var largestNumber = arr[n][0];
+    for (var sb = 1; sb < arr[n].length; sb++) {
+      if (arr[n][sb] > largestNumber) {
+        largestNumber = arr[n][sb];
+      }
+    }
+
+    results[n] = largestNumber;
+  }
+  console.log(results); //returns: [ 5, 27, 39, 1001 ]
+  return results;
+}
+
+largestOfFour([
+  [4, 5, 1, 3],
+  [13, 27, 18, 26],
+  [32, 35, 37, 39],
+  [1000, 1001, 857, 1]
+]);
+
+// Confirm Ending
+
+function confirmEnding(str, target) {
+  console.log('The word \"' + str + '\" ends with \"' + target + '\"');
+  return str.substr(-target.length) === target;
+}
+
+console.log(confirmEnding("Bastian", "n"));
+console.log(confirmEnding("Europe", "p"));
+
+// Repeat a string repeat a string
+
+function repeatStringNumTimes(str, num) {
+  if (num > 0) {
+    return str.repeat(num);
+  }
+  return "";
+}
+
+console.log(repeatStringNumTimes("abc", 3)); //Returns abcabcabc
+
+// Truncate a String
+
+function truncateString(str, num) {
+  // Clear out that junk in your trunk
+  if (str.length > num && num > 3) {
+    return str.slice(0, (num - 3)) + '...';
+  } else if (str.length > num && num <= 3) {
+    return str.slice(0, num) + '...';
+  } else {
+    return str;
+  }
+}
+
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", 11)); //returns A-tisket...
